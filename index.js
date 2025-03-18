@@ -21,16 +21,13 @@ function showDetails(ramen) {
     document.getElementById('ramen-image').src = ramen.image;
     document.getElementById('ramen-rating').innerText = `Rating: ${ramen.rating}`;
     document.getElementById('ramen-comment').innerText = ramen.comment;
-
     document.getElementById('edit-rating').value = ramen.rating;
     document.getElementById('edit-comment').value = ramen.comment;
-
     document.getElementById('update-button').onclick = () => {
         ramen.rating = document.getElementById('edit-rating').value;
         ramen.comment = document.getElementById('edit-comment').value;
         showDetails(ramen);
     };
-
     document.getElementById('delete-button').onclick = () => {
         const index = ramens.indexOf(ramen);
         if (index > -1) {
@@ -43,17 +40,20 @@ function showDetails(ramen) {
 
 document.getElementById('new-ramen-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const newRamen = {
-        id: ramens.length + 1,
-        name: document.getElementById('new-name').value,
-        restaurant: document.getElementById('new-restaurant').value,
-        image: document.getElementById('new-image').value,
-        rating: document.getElementById('new-rating').value,
-        comment: document.getElementById('new-comment').value
-    };
+    console.log("Form submitted!");
+    const name = document.getElementById('new-name').value.trim();
+    const restaurant = document.getElementById('new-restaurant').value.trim();
+    const image = document.getElementById('new-image').value.trim();
+    const rating = document.getElementById('new-rating').value.trim();
+    const comment = document.getElementById('new-comment').value.trim();
+    if (!name || !restaurant || !image || !rating || !comment) {
+        alert("Please fill in all fields!");
+        return;
+    }
+    const newRamen = { id: ramens.length + 1, name, restaurant, image, rating, comment };
     ramens.push(newRamen);
     displayRamens();
-    showDetails(newRamen);
+    setTimeout(() => showDetails(newRamen), 100);
     e.target.reset();
 });
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     displayRamens();
     if (ramens.length) showDetails(ramens[0]);
 });
-  
+
 
 //psudo code
 // 1. create a form for new ramen
