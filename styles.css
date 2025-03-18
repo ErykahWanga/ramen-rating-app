@@ -1,0 +1,78 @@
+/* Base styles */
+body {
+    background-color: #110b0b;
+    color: #f7f1f1;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #f1ebe9;
+}
+
+/* Ramen menu */
+#ramen-menu {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+#ramen-menu img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+#ramen-menu img:hover {
+    transform: scale(1.1);
+}
+
+/* Ramen details */
+#ramen-detail {
+    text-align: center;
+    padding: 20px;
+}
+
+#ramen-image {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.button {
+    background-color: #FFEA00;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #FF3D00;
+    color: #FFFFFF;
+}
+
+/* Form */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
