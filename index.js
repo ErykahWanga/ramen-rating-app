@@ -5,30 +5,65 @@ const ramens = [
 
 function displayRamens() {
     const menu = document.getElementById('ramen-menu');
+    if (!menu) return;
     menu.innerHTML = '';
     ramens.forEach(ramen => {
         const img = document.createElement('img');
         img.src = ramen.image;
         img.alt = ramen.name;
         img.onclick = () => showDetails(ramen);
-        menu.appendChild(img);
+        if (menu) {
+            menu.appendChild(img);
+        } else {
+            console.error("Menu element not found.");
+        }
     });
 }
 
 function showDetails(ramen) {
-    document.getElementById('ramen-name').innerText = ramen.name;
-    document.getElementById('ramen-restaurant').innerText = ramen.restaurant;
-    document.getElementById('ramen-image').src = ramen.image;
-    document.getElementById('ramen-rating').innerText = `Rating: ${ramen.rating}`;
-    document.getElementById('ramen-comment').innerText = ramen.comment;
-    document.getElementById('edit-rating').value = ramen.rating;
-    document.getElementById('edit-comment').value = ramen.comment;
-    document.getElementById('update-button').onclick = () => {
-        ramen.rating = document.getElementById('edit-rating').value;
-        ramen.comment = document.getElementById('edit-comment').value;
-        showDetails(ramen);
+    const nameElem = document.getElementById('ramen-name');
+    const restaurantElem = document.getElementById('ramen-restaurant');
+    const imageElem = document.getElementById('ramen-image');
+    const ratingElem = document.getElementById('ramen-rating');
+    const commentElem = document.getElementById('ramen-comment');
+    const ratingInput = document.getElementById('edit-rating');
+    const commentInput = document.getElementById('edit-comment');
+    const updateButton = document.getElementById('update-button');
+    const deleteButton = document.getElementById('delete-button');
+
+    if (!nameElem || !restaurantElem || !imageElem || !ratingElem || !commentElem || !ratingInput || !commentInput || !updateButton || !deleteButton) {
+        console.error("One or more elements are missing in showDetails function.");
+        return;
+    }
+
+    nameElem.innerText = ramen.name;
+    restaurantElem.innerText = ramen.restaurant;
+    imageElem.src = ramen.image;  
+    imageElem.alt = ramen.name;
+    ratingElem.innerText = `Rating: ${ramen.rating}`;
+    commentElem.innerText = ramen.comment;
+    ratingInput.value = ramen.rating;
+    commentInput.value = ramen.comment;
+
+    // ✅ Ensure update button correctly modifies the ramen details
+    updateButton.onclick = () => {
+        const newRating = Number(ratingInput.value);
+        const newComment = commentInput.value.trim();
+
+        if (!newRating || newComment === "") {
+            alert("Please enter a valid rating and comment.");
+            return;
+        }
+
+        ramen.rating = newRating;
+        ramen.comment = newComment;
+
+        showDetails(ramen); // Refresh displayed details
+        displayRamens(); // Refresh the list
     };
-    document.getElementById('delete-button').onclick = () => {
+
+    // ✅ Fix Delete Button
+    deleteButton.onclick = () => {
         const index = ramens.indexOf(ramen);
         if (index > -1) {
             ramens.splice(index, 1);
@@ -38,30 +73,50 @@ function showDetails(ramen) {
     };
 }
 
-document.getElementById('new-ramen-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log("Form submitted!");
-    const name = document.getElementById('new-name').value.trim();
-    const restaurant = document.getElementById('new-restaurant').value.trim();
-    const image = document.getElementById('new-image').value.trim();
-    const rating = document.getElementById('new-rating').value.trim();
-    const comment = document.getElementById('new-comment').value.trim();
-    if (!name || !restaurant || !image || !rating || !comment) {
-        alert("Please fill in all fields!");
-        return;
-    }
-    const newRamen = { id: ramens.length + 1, name, restaurant, image, rating, comment };
-    ramens.push(newRamen);
-    displayRamens();
-    setTimeout(() => showDetails(newRamen), 100);
-    e.target.reset();
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     displayRamens();
     if (ramens.length) showDetails(ramens[0]);
+
+    const form = document.getElementById('new-ramen-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log("Form submitted!");
+
+        const nameInput = document.getElementById('new-name');
+        const restaurantInput = document.getElementById('new-restaurant');
+        const imageInput = document.getElementById('new-image');
+        const ratingInput = document.getElementById('new-rating');
+        const commentInput = document.getElementById('new-comment');
+
+        if (!nameInput || !restaurantInput || !imageInput || !ratingInput || !commentInput) {
+            console.error("One or more input fields are missing from the HTML.");
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const restaurant = restaurantInput.value.trim();
+        const image = imageInput.value.trim();
+        const rating = Number(ratingInput.value.trim());
+        const comment = commentInput.value.trim();
+
+        if (!name || !restaurant || !image || !rating || !comment) {
+            alert("Please fill in all fields!");
+            return;
+        }
+
+        const newRamen = { id: ramens.length + 1, name, restaurant, image, rating, comment };
+        ramens.push(newRamen);
+        displayRamens();
+        setTimeout(() => showDetails(newRamen), 100);
+        e.target.reset();
+    });
 });
 
+
+
+     
 
 //psudo code
 // 1. create a form for new ramen
