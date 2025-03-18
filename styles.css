@@ -1,18 +1,17 @@
-/* Base styles */
+
 body {
     background-color: #110b0b;
-    color: #f7f1f1;
+    color: #f1da0a;
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
 }
 
-/* Header */
 h1 {
     text-align: center;
-    color: #f1ebe9;
+    color: #e4d508;
 }
 
-/* Ramen menu */
+
 #ramen-menu {
     display: flex;
     gap: 10px;
@@ -25,14 +24,14 @@ h1 {
     height: 100px;
     cursor: pointer;
     border-radius: 10px;
-    transition: transform 0.2s;
+    transition: transform 0.1s;
 }
 
 #ramen-menu img:hover {
     transform: scale(1.1);
 }
 
-/* Ramen details */
+
 #ramen-detail {
     text-align: center;
     padding: 20px;
@@ -44,7 +43,7 @@ h1 {
     border-radius: 10px;
 }
 
-/* Buttons */
+
 .button {
     background-color: #FFEA00;
     color: #000000;
@@ -56,11 +55,10 @@ h1 {
 }
 
 .button:hover {
-    background-color: #FF3D00;
+    background-color: grey;
     color: #FFFFFF;
 }
 
-/* Form */
 form {
     max-width: 400px;
     margin: 20px auto;

@@ -1,6 +1,7 @@
 const ramens = [
     { id: 1, name: "Shoyu Ramen", restaurant: "Ichiran", image: "https://moringa.instructure.com/courses/967/files/517797/preview", rating: 5, comment: "Delicious!" },
     { id: 2, name: "Miso Ramen", restaurant: "Menya", image: "https://moringa.instructure.com/courses/967/files/517801/preview", rating: 4, comment: "Very flavorful!" }
+    
 ];
 
 function displayRamens() {
@@ -45,7 +46,7 @@ function showDetails(ramen) {
     ratingInput.value = ramen.rating;
     commentInput.value = ramen.comment;
 
-    // ✅ Ensure update button correctly modifies the ramen details
+    
     updateButton.onclick = () => {
         const newRating = Number(ratingInput.value);
         const newComment = commentInput.value.trim();
@@ -58,11 +59,11 @@ function showDetails(ramen) {
         ramen.rating = newRating;
         ramen.comment = newComment;
 
-        showDetails(ramen); // Refresh displayed details
-        displayRamens(); // Refresh the list
+        showDetails(ramen); 
+        displayRamens(); 
     };
 
-    // ✅ Fix Delete Button
+
     deleteButton.onclick = () => {
         const index = ramens.indexOf(ramen);
         if (index > -1) {
