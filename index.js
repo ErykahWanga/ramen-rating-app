@@ -61,3 +61,43 @@ document.addEventListener('DOMContentLoaded', () => {
     displayRamens();
     if (ramens.length) showDetails(ramens[0]);
 });
+  
+
+//psudo code
+// 1. create a form for new ramen
+// Initialize an array of ramen objects
+// Each object contains id, name, restaurant, image, rating, and comment
+
+// Function to display all ramen images in the menu
+// Get ramen menu container
+// Clear previous menu items
+// Loop through each ramen and create an image element
+// Create an image element
+// Set image attributes
+// Add event listener to show details when clicked
+// Append image to menu
+
+// Function to show ramen details
+// Display ramen name, restaurant, image, rating, and comment
+// Pre-fill rating and comment form inputs
+
+// Set event listener for update button
+// Update rating and comment with new values
+// Refresh displayed details
+
+// Set event listener for delete button
+// Find ramen index in the array
+// Remove ramen from array if found
+// Refresh ramen menu
+// Show first ramen if any remain, otherwise clear details
+
+// Event listener for adding new ramen
+// Prevent default form submission
+// Create a new ramen object using input values
+// Add new ramen to the array
+// Refresh menu and display the new ramen details
+// Reset the form
+
+// When the page loads, display all ramen and show first ramen details
+// If there are ramens in the list, show the first one
+// Otherwise, clear the details section
